@@ -16,17 +16,33 @@ struct Articles: Codable {
 }
 
 // MARK: - Section
-struct Section: Codable {
+struct Section: Codable, Hashable {
     let id, header: String?
     let itemsTotal, itemsToShow: Int?
-    let items: [Item]?
+    let items: [Article]?
+    
+    static func == (lhs: Section, rhs: Section) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }
 
-// MARK: - Item
-struct Item: Codable {
+// MARK: - Article
+struct Article: Codable, Hashable {
     let id: String?
     let image: Image?
     let title: String?
+    
+    static func == (lhs: Article, rhs: Article) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }
 
 // MARK: - Image
@@ -43,3 +59,14 @@ struct Image: Codable {
     }
 }
 
+extension Article {
+    static let defaultArticle = Article(
+                                id: "12345",
+                                image: Image(
+                                        the1X: DataSources.noImage.rawValue,
+                                        the2X: DataSources.noImage.rawValue,
+                                        the3X: DataSources.noImage.rawValue,
+                                        aspectRatio: 1,
+                                        loopAnimation: false),
+                                title: "Untitled")
+}
