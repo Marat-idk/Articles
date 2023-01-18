@@ -15,7 +15,7 @@
 		D26A43CB29785C3F00C42490 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26A43CA29785C3F00C42490 /* DataManager.swift */; };
 		D26A43CE29785FBF00C42490 /* jsonviewer.json in Resources */ = {isa = PBXBuildFile; fileRef = D26A43CD29785FBF00C42490 /* jsonviewer.json */; };
 		D26A43D0297883C600C42490 /* ArticleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26A43CF297883C600C42490 /* ArticleCollectionViewCell.swift */; };
-		D26A43D22978874E00C42490 /* ArticlesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26A43D12978874E00C42490 /* ArticlesCollectionViewController.swift */; };
+		D26A43D22978874E00C42490 /* ArticlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26A43D12978874E00C42490 /* ArticlesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +29,7 @@
 		D26A43CA29785C3F00C42490 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		D26A43CD29785FBF00C42490 /* jsonviewer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = jsonviewer.json; sourceTree = "<group>"; };
 		D26A43CF297883C600C42490 /* ArticleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCollectionViewCell.swift; sourceTree = "<group>"; };
-		D26A43D12978874E00C42490 /* ArticlesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesCollectionViewController.swift; sourceTree = "<group>"; };
+		D26A43D12978874E00C42490 /* ArticlesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +87,7 @@
 		D26A43C729785B2400C42490 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D26A43D12978874E00C42490 /* ArticlesCollectionViewController.swift */,
+				D26A43D12978874E00C42490 /* ArticlesViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -190,7 +190,7 @@
 				D26A43C629785AAE00C42490 /* Articles.swift in Sources */,
 				D26A43CB29785C3F00C42490 /* DataManager.swift in Sources */,
 				D26A43D0297883C600C42490 /* ArticleCollectionViewCell.swift in Sources */,
-				D26A43D22978874E00C42490 /* ArticlesCollectionViewController.swift in Sources */,
+				D26A43D22978874E00C42490 /* ArticlesViewController.swift in Sources */,
 				D26A43B1297859C400C42490 /* AppDelegate.swift in Sources */,
 				D26A43B3297859C400C42490 /* SceneDelegate.swift in Sources */,
 			);
