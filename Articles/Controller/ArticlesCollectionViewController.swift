@@ -2,87 +2,107 @@
 //  ArticlesCollectionViewController.swift
 //  Articles
 //
-//  Created by Maxim Raskevich on 18.01.2023.
+//  Created by Marat on 18.01.2023.
 //
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
-class ArticlesCollectionViewController: UICollectionViewController {
-
+final class ArticlesViewController: UIViewController {
+    
+    private var articles: Articles?
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Article>?
+    private var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+        createCollectionView()
+        view.addSubview(collectionView)
+        fetchData()
+        createDataSource()
+        reloadData()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
-
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
     
-        // Configure the cell
+    private func createCollectionView() {
+        collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: createCompositionalLayout())
+        collectionView.register(
+            ArticleCollectionViewCell.self,
+            forCellWithReuseIdentifier: ArticleCollectionViewCell.identifier)
+    }
     
-        return cell
+    private func fetchData() {
+        DataManager.shared.getArticles { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let articles):
+                self?.articles = articles
+            }
+        }
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
+    private func createCompositionalLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
+            
+            guard let _ = self.articles?.sections?[sectionIndex] else { return nil }
+            
+            return self.createArticlesSection()
+        }
+        return layout
     }
-    */
-
+    
+    // создание секции
+    private func createArticlesSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(1))
+        
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = .init(top: 8, leading: 8, bottom: 8, trailing: 8)
+        
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .estimated(200),
+            heightDimension: .estimated(100))
+        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+        section.contentInsets = .init(top: 55, leading: 20, bottom: 0, trailing: 20)
+        
+        return section
+    }
+    
+    func createDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<Section, Article>(collectionView: collectionView, cellProvider: { [weak self] (collectionView, indexPath, item) -> UICollectionViewCell in
+            
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ArticleCollectionViewCell.identifier, for: indexPath) as? ArticleCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            
+            let section = indexPath.section
+            let item = indexPath.item
+            let article = self?.articles?.sections?[section].items?[item] ?? Article.defaultArticle
+            
+            
+            
+            cell.set(with: article)
+            
+            return cell
+        })
+    }
+    
+    func reloadData() {
+        guard let sections = articles?.sections else { return }
+        
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Article>()
+        
+        snapshot.appendSections(sections)
+        
+        for section in sections {
+            // FIXME: fix forced unwrap
+            snapshot.appendItems(section.items!, toSection: section)
+        }
+        dataSource?.apply(snapshot)
+    }
 }
