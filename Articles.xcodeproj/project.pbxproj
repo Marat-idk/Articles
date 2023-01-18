@@ -9,25 +9,31 @@
 /* Begin PBXBuildFile section */
 		D26A43B1297859C400C42490 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26A43B0297859C400C42490 /* AppDelegate.swift */; };
 		D26A43B3297859C400C42490 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26A43B2297859C400C42490 /* SceneDelegate.swift */; };
-		D26A43B5297859C400C42490 /* ArticlesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26A43B4297859C400C42490 /* ArticlesCollectionViewController.swift */; };
 		D26A43BA297859C900C42490 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D26A43B9297859C900C42490 /* Assets.xcassets */; };
 		D26A43BD297859C900C42490 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D26A43BB297859C900C42490 /* LaunchScreen.storyboard */; };
 		D26A43C629785AAE00C42490 /* Articles.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26A43C529785AAE00C42490 /* Articles.swift */; };
 		D26A43CB29785C3F00C42490 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26A43CA29785C3F00C42490 /* DataManager.swift */; };
 		D26A43CE29785FBF00C42490 /* jsonviewer.json in Resources */ = {isa = PBXBuildFile; fileRef = D26A43CD29785FBF00C42490 /* jsonviewer.json */; };
+		D26A43D0297883C600C42490 /* ArticleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26A43CF297883C600C42490 /* ArticleCollectionViewCell.swift */; };
+		D26A43D22978874E00C42490 /* ArticlesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26A43D12978874E00C42490 /* ArticlesCollectionViewController.swift */; };
+		D26A43D429788FC400C42490 /* ArticlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26A43D329788FC400C42490 /* ArticlesViewController.swift */; };
+		D26A43D62978905400C42490 /* ArticlesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26A43D52978905400C42490 /* ArticlesCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D26A43AD297859C400C42490 /* Articles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Articles.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D26A43B0297859C400C42490 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D26A43B2297859C400C42490 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D26A43B4297859C400C42490 /* ArticlesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesCollectionViewController.swift; sourceTree = "<group>"; };
 		D26A43B9297859C900C42490 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D26A43BC297859C900C42490 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D26A43BE297859C900C42490 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D26A43C529785AAE00C42490 /* Articles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Articles.swift; sourceTree = "<group>"; };
 		D26A43CA29785C3F00C42490 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		D26A43CD29785FBF00C42490 /* jsonviewer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = jsonviewer.json; sourceTree = "<group>"; };
+		D26A43CF297883C600C42490 /* ArticleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCollectionViewCell.swift; sourceTree = "<group>"; };
+		D26A43D12978874E00C42490 /* ArticlesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesCollectionViewController.swift; sourceTree = "<group>"; };
+		D26A43D329788FC400C42490 /* ArticlesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesViewController.swift; sourceTree = "<group>"; };
+		D26A43D52978905400C42490 /* ArticlesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +91,8 @@
 		D26A43C729785B2400C42490 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D26A43B4297859C400C42490 /* ArticlesCollectionViewController.swift */,
+				D26A43D12978874E00C42490 /* ArticlesCollectionViewController.swift */,
+				D26A43D329788FC400C42490 /* ArticlesViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -93,6 +100,8 @@
 		D26A43C829785B6600C42490 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D26A43CF297883C600C42490 /* ArticleCollectionViewCell.swift */,
+				D26A43D52978905400C42490 /* ArticlesCollectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -186,7 +195,10 @@
 			files = (
 				D26A43C629785AAE00C42490 /* Articles.swift in Sources */,
 				D26A43CB29785C3F00C42490 /* DataManager.swift in Sources */,
-				D26A43B5297859C400C42490 /* ArticlesCollectionViewController.swift in Sources */,
+				D26A43D0297883C600C42490 /* ArticleCollectionViewCell.swift in Sources */,
+				D26A43D429788FC400C42490 /* ArticlesViewController.swift in Sources */,
+				D26A43D22978874E00C42490 /* ArticlesCollectionViewController.swift in Sources */,
+				D26A43D62978905400C42490 /* ArticlesCollectionView.swift in Sources */,
 				D26A43B1297859C400C42490 /* AppDelegate.swift in Sources */,
 				D26A43B3297859C400C42490 /* SceneDelegate.swift in Sources */,
 			);
