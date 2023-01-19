@@ -27,6 +27,7 @@ final class ArticlesViewController: UIViewController {
     
     private func createCollectionView() {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
+        collectionView.allowsMultipleSelection = true
         
         collectionView.register(
             ArticleCollectionViewCell.self,
@@ -185,6 +186,12 @@ final class ArticlesViewController: UIViewController {
 // MARK: CollectionViewDelegate
 
 extension ArticlesViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        let selectedCount = collectionView.indexPathsForSelectedItems?.count ?? 0
+        return selectedCount < 6
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? ArticleCollectionViewCell else { return }
         cell.isSelected = true
