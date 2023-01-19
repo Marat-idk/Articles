@@ -83,11 +83,15 @@ final class ArticlesViewController: UIViewController {
             heightDimension: .fractionalHeight(1))
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = .init(top: 8, leading: 8, bottom: 8, trailing: 8)
+        item.contentInsets = .init(
+                                top: ItemSizeConstants.topIndent,
+                                leading: ItemSizeConstants.leadingIndent,
+                                bottom: ItemSizeConstants.bottomIndent,
+                                trailing: ItemSizeConstants.trailingIndent)
         
         let groupSize = NSCollectionLayoutSize(
-            widthDimension: .estimated(200),
-            heightDimension: .estimated(230))
+            widthDimension: .estimated(ItemSizeConstants.itemWidth),
+            heightDimension: .estimated(ItemSizeConstants.itemHeight))
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
@@ -190,4 +194,13 @@ extension ArticlesViewController: UICollectionViewDelegate {
         guard let cell = collectionView.cellForItem(at: indexPath) as? ArticleCollectionViewCell else { return }
         cell.isSelected = false
     }
+}
+
+struct ItemSizeConstants {
+    static let leadingIndent = 8.0
+    static let trailingIndent = 8.0
+    static let topIndent = 8.0
+    static let bottomIndent = 8.0
+    static let itemWidth = (UIScreen.main.bounds.width - leadingIndent - trailingIndent) / 2
+    static let itemHeight = (UIScreen.main.bounds.height - topIndent - bottomIndent) / 3.2
 }
