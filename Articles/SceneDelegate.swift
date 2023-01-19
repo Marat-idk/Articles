@@ -21,7 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         window?.backgroundColor = .white
-        window?.rootViewController = ArticlesViewController()
+        let navigationVC = UINavigationController(rootViewController: ArticlesViewController())
+        window?.rootViewController = navigationVC
         window?.makeKeyAndVisible()
     }
 
